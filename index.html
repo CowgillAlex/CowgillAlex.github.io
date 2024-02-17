@@ -3,54 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-            padding: 2em;
-            margin: 0;
-        }
-
-        h1 {
-            color: #d9534f;
-            font-size: 2em;
-        }
-
-        p {
-            font-size: 1.2em;
-            margin: 20px 0;
-        }
-
-        a {
-            color: #428bca;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .bug-button {
-            background-color: #d9534f;
-            color: #fff;
-            padding: 0.5em 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-    </style>
-    <title>404 Not Found</title>
+    <link rel="stylesheet" href="./style.css">
+    <title>CowgillAlex</title>
 </head>
 <body>
-    <h1>404 Not Found</h1>
-    <p>The page you're looking for might be under construction or does not exist.</p>
-    <p>Return to <a href="/">home</a>.</p>
-    <a href="./bugs.html" class="bug-button">Think this is in error?</a>
+
+    <header>
+        <h1>CowgillAlex</h1>
+    </header>
+
+    <nav>
+        <a href="#about-me">About Me</a> |
+        <a href="#recent-projects">Recent Projects</a> |
+        <a href="#recent-posts">Recent Posts</a>
+    </nav>
+
+    <section id="about-me" class="about-me">
+        <h2>About Me</h2>
+        <p>Hi! I'm CowgillAlex and I make projects. You can check them out on this site </p>
+    </section>
+
+    <section id="recent-projects" class="project">
+        <h2>Recent Projects <a href="projects.html" class="see-more-button">See More</a></h2>
+        <div class="project">
+            <h3>3D Voxel Engine</h3>
+            <p>A 3D voxel engine, written using Three JS for Javascript.</p>
+            <button onclick="tryItOut('./projects/games/3d voxel engine/')">Try It Out</button>
+        </div>
+        <!--<div class="project">
+            <h3>Project 2</h3>
+            <p>Description of Project 2...</p>
+            <button onclick="tryItOut('')">Try It Out</button>
+        </div> -->
+        <!-- Add more project boxes as needed -->
+    </section>
+    
+    <section id="recent-posts" class="post">
+        <h2>Recent Posts <a href="./posts/posts.html" class="see-more-button">See More</a></h2>
+        <div class="post">
+            <h3><a href="./posts/post1.html">3D Voxel Engine</a></h3>
+            <p>Learn about how I made the 3D voxel engine in ThreeJS.</p>
+        </div>
+        <!--<div class="post">
+            <h3><a href="./posts/post2.html">Post 2</a></h3>
+            <p>Content of Post 2...</p>
+        </div>-->
+        <!-- Add more post boxes as needed -->
+    </section>
+
+    <footer>
+        <button id="report-bug">Report a Bug</button>
+    </footer>
+
+    <script>
+        function tryItOut(projectURL) {
+            window.open(projectURL, '_blank');
+            // You can also use window.location.href = projectURL; to navigate to the project in the same tab
+        }
+    </script>
 </body>
 </html>
