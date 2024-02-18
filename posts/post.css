@@ -1,0 +1,56 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
+}
+
+h1 {
+    color: #333;
+    margin: 0;
+}
+
+main {
+    flex: 1; /* Allow main to take remaining vertical space */
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+article {
+    margin-bottom: 40px;
+}
+
+p {
+    color: #555;
+}
+
+code {
+    background-color: #f8f8f8;
+    padding: 2px 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 2px solid #ddd;
+    margin-top: auto; /* Push the footer to the bottom */
+}
