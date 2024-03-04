@@ -1,65 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>CowgillAlex</title>
+  <!-- Load Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+    p {
+      text-align: center;
+      font-size: 18px;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .card {
+      margin: 20px auto;
+      width: 600px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .card-text {
+      font-size: 16px;
+    }
+    .card-link {
+      margin-right: 10px;
+    }
+    .icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 5px;
+    }
+  </style>
 </head>
 <body>
-
-    <header>
-        <h1>CowgillAlex</h1>
-    </header>
-
-    <nav>
-        <a href="#about-me">About Me</a> |
-        <a href="#recent-projects">Recent Projects</a> |
-        <a href="#recent-posts">Recent Posts</a>
-    </nav>
-
-    <section id="about-me" class="about-me">
-        <h2>About Me</h2>
-        <p>Hi! I'm CowgillAlex and I make projects. You can check them out on this site </p>
-    </section>
-
-    <section id="recent-projects" class="project">
-        <h2>Recent Projects <a href="projects.html" class="see-more-button">See More</a></h2>
-        <div class="project">
-            <h3>3D Voxel Engine</h3>
-            <p>A 3D voxel engine, written using Three JS for Javascript.</p>
-            <button onclick="tryItOut('./projects/games/3d voxel engine/')">Try It Out</button>
-        </div>
-        <!--<div class="project">
-            <h3>Project 2</h3>
-            <p>Description of Project 2...</p>
-            <button onclick="tryItOut('')">Try It Out</button>
-        </div> -->
-        <!-- Add more project boxes as needed -->
-    </section>
-    
-    <section id="recent-posts" class="post">
-        <h2>Recent Posts <a href="./posts/posts.html" class="see-more-button">See More</a></h2>
-        <div class="post">
-            <h3><a href="./posts/post1.html">3D Voxel Engine</a></h3>
-            <p>Learn about how I made the 3D voxel engine in ThreeJS.</p>
-        </div>
-        <!--<div class="post">
-            <h3><a href="./posts/post2.html">Post 2</a></h3>
-            <p>Content of Post 2...</p>
-        </div>-->
-        <!-- Add more post boxes as needed -->
-    </section>
-
-    <footer>
-        <button id="report-bug">Report a Bug</button>
-    </footer>
-
-    <script>
-        function tryItOut(projectURL) {
-            window.open(projectURL, '_blank');
-            // You can also use window.location.href = projectURL; to navigate to the project in the same tab
-        }
-    </script>
+  <div class="container">
+    <img src="logo.jpg" alt="Logo" class="logo">
+    <h1>Hi, I'm Alexander Cowgill</h1>
+    <p>I'm a passionate coder, gamer, and YouTuber. I love creating and sharing fun and educational content on various topics.</p>
+    <!-- Use Bootstrap cards to display your links -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">YouTube</h5>
+        <p class="card-text">Subscribe to my YouTube channel where I post videos on coding, gaming, Artificial Intelligence, and more.</p>
+        <a href="https://www.youtube.com/@AlexanderCowgill?sub_confirmation=1" target="_blank" class="card-link">
+          <!-- Use Bootstrap icons to add some flair -->
+          <img src="https://icons.getbootstrap.com/icons/youtube.svg" alt="YouTube icon" class="icon">
+          Subscribe
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Email</h5>
+        <p class="card-text">Email me if you have any questions, suggestions, or feedback.</p>
+        <a href="mailto:alexandercowgillyt@gmail.com" target="_blank" class="card-link">
+          <img src="https://icons.getbootstrap.com/icons/envelope.svg" alt="Email icon" class="icon">
+          Email
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Scratch</h5>
+        <p class="card-text">Check out my Scratch account where I make interactive games and animations.</p>
+        <a href="https://scratch.mit.edu/users/19gamesac" target="_blank" class="card-link">
+          <img src="https://icons.getbootstrap.com/icons/puzzle.svg" alt="Scratch icon" class="icon">
+          Scratch
+        </a>
+      </div>
+    </div>
+    <p>Thanks for visiting my page. I hope you enjoy my content and learn something new. Have a great day!</p>
+  </div>
 </body>
 </html>
