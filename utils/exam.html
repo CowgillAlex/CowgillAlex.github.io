@@ -57,18 +57,36 @@
     var updateLine = document.getElementById('updateLine');
     updateLine.textContent = updateText;
   });
+ 
+// Define an async function to wrap your code
+async function requestWakeLock() {
+  if ('wakeLock' in navigator) {
+    let lock;
+    const type = 'screen'; // Define the type as 'screen'
 
-  const requestWakeLock = async () => {
-  try {
-    const wakeLock = await navigator.wakeLock.request("screen");
-  } catch (err) {
-    // The wake lock request fails - usually system-related, such as low battery.
+    try {
+      console.log(`Acquire "${type}" button pressed.`);
+      lock = await navigator.wakeLock.request(type);
+      console.log(`"${type}" lock acquired.`);
 
-    console.log(`${err.name}, ${err.message}`);
+      lock.addEventListener('release', () => {
+        console.log(`"${type}" lock released.`);
+        lock = null;
+      });
+    } catch (e) {
+      console.error(`Caught ${e.name} acquiring "${type}" lock: ${e.message}`);
+    }
   }
-};
+}
 
+// Call the async function to execute your code
 requestWakeLock();
+
+
+  
+
+
+
 
 </script>
 </body>
