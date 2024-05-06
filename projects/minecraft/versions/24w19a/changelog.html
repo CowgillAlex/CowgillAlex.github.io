@@ -40,8 +40,8 @@
     <section id="hero" class="bg-white py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
-          <h1 class="text-4xl font-bold text-gray-900 mb-4" id="hero-title">Scratch Edition Snapshot 24w18a</h1>
-          <p class="text-gray-600" id="hero-description">24w18a is here, bringing the first version of Scratch Edition to Github</p>
+          <h1 class="text-4xl font-bold text-gray-900 mb-4" id="hero-title">Scratch Edition Snapshot 24w19a</h1>
+          <p class="text-gray-600" id="hero-description">24w19a is the second snapshot uploaded here on Github</p>
           <p class="text-gray-600" id="hero-description">Have a play with it here, and let me know of any bugs/suggested features <a href="../../bugs/index.html">here</a></p>
          
         </div>
@@ -59,15 +59,30 @@
             <h2 class="text-2xl font-bold text-gray-900 mb-4" id="about-title">Test the latest version <a href="./index.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8 inline-block">Test it!</a></h2>
             
        
-            <p class="text-gray-600" id="about-content">Well, this is the first ever snapshot for Scratch Edition, so there isn't any documentable changes, but I will do my best!</p>
+            <p class="text-gray-600" id="about-content">24w19a is the second snapshot here. My stats say that I have been testing this project for over 30 hours since January this year O_O</p>
            <br>
-            <p class="text-2xl font-bold text-gray-900 mb-4" id="changes-header">Changes</p>
-            <ul class="list-disc text-gray-600" id="about-content">
-                <li>Tweaked World Generation to follow a density function, rather than an absolute terrain height</li>
-                <li>This means that the terrain uses 2D noise, to make it more dynamic, rather than 1D heightmap</li>
+            <p class="text-2xl font-bold text-gray-900 mb-4" id="add-header">Additions</p>
+            <ul class="list-disc text-gray-600" id="add-content">
+                <li>WASD as an alternative to the arrow keys</li>
+                <li>Space key to jump</li>
             </ul>
-            
-            
+            <br>
+            <p class="text-2xl font-bold text-gray-900 mb-4" id="changes-header">Changes</p>
+            <ul class="list-disc text-gray-600" id="changes-content">
+                <li>Linked the GRID list for exporting to the "i" (debug) key</li>
+                <li>Removed the player heart HUD: it is not used, there are no damage types yet</li>
+                <li>Removed quick move (a, d, f, g, h, j) to allow for WASD key movements</li>
+                <li>Limited Camera movement (player is on screen at all times)</li>
+                <li>Changed the way the columns are generated, to be less glitchy when going into the negative x axis</li>
+            </ul>
+
+            <p class="text-2xl font-bold text-gray-900 mb-4" id="bug-header">Bugs Fixed</p>
+            <ul class="list-disc text-gray-600" id="bug-content">
+                <li>When the player moves to the left, the player doesnt move smoothly. <code>[SE-1]</code> </li>
+                <li>When player jumps, after crawling, the player rotates, rather than turns</li>
+                <li>When the player is crawling, the hand isnt positioned correctly</li>
+                <li>Player can escape the world</li>
+            </ul>
             
         </div>
         </div>
