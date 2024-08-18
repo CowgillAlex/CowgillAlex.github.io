@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Me</title>
+  <style>
+    @import 'https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css';
+    @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css';
+  </style>
+</head>
+<body class="bg-gray-100">
+    <header class="fixed left-0 right-0 top-0 z-50 bg-gradient-to-r from-gray-900 to-gray-700">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between py-6">
+          <div class="flex items-center">
+            <a href="#">
+              <img class="h-8 w-auto" src="../assets/sitelogo.png" alt="Logo" />
+            </a>
+          </div>
+          <div class="block md:hidden">
+            <button id="mobile-menu-toggle" class="text-gray-300 hover:text-white focus:text-white focus:outline-none">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+          <div class="hidden md:block">
+            <nav class="flex space-x-4">
+              <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
+              <a href="/projects/scratch/minecraft/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Scratch</a>
+              <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+              <a href="/IS/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">IS</a>
+             </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <main class="pt-16">
+      <section id="hero" class="bg-white py-12">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <h1 class="mb-4 text-4xl font-bold text-gray-900">Contact Me</h1>
+            <p class="text-lg text-gray-700">Alexander Cowgill</p>
+          </div>
+        </div>
+      </section>
+  
+      <section id="email" class="rounded-lg bg-white shadow-lg mt-8">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-12 items-center">
+            <div class="md:col-span-8">
+              <h2 class="mb-4 text-2xl font-bold text-gray-900">Contact Me via Email</h2>
+              <p class="text-lg text-gray-700">If you have any inquiries/questions, email me here</p>
+              <div class="mt-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                <a href="mailto:alexandercowgillyt@gmail.com" class="text-lg text-blue-600 hover:underline">alexandercowgillyt@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+  <div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 right-0 bg-gradient-to-r from-gray-900 to-gray-700 z-50">
+    <nav class="px-2 pt-2 pb-4 space-y-1">
+      <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
+      <a href="/projects/scratch/minecraft/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Scratch</a>
+      <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+      <a href="/IS/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">IS</a>
+   </nav>
+  </div>
+
+  
+  <script>
+   
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+      var mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+  </body>
+
+</html>

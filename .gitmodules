@@ -1,0 +1,3 @@
+[submodule "2D-Minecraft"]
+	path = 2D-Minecraft
+	url = https://github.com/CowgillAlex/2D-Minecraft.git

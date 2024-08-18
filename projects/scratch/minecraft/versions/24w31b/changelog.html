@@ -1,0 +1,103 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Version 24w31b Changelog</title>
+      <style>
+        @import 'https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css';
+        @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css';
+      </style>
+    </head>
+    <body class="bg-gray-100">
+      <header class="fixed top-0 left-0 right-0 bg-gradient-to-r from-gray-900 to-gray-700 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center py-6">
+            <div class="flex items-center">
+              <a href="/">
+                <img class="h-8 w-auto" src="../../../../../assets/sitelogo.png" alt="Logo">
+              </a>
+            </div>
+            <div class="block md:hidden">
+              <button id="mobile-menu-toggle" class="text-gray-300 hover:text-white focus:outline-none focus:text-white">
+                <i class="fas fa-bars"></i>
+              </button>
+            </div>
+            <div class="hidden md:block">
+              <nav class="flex space-x-4">
+                    <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
+            <a href="/projects/scratch/minecraft/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Scratch</a>
+            <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+            <a href="/IS/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">IS</a>
+         
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="pt-16">
+        <section id="hero" class="bg-white py-12">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+              <h1 class="text-4xl font-bold text-gray-900 mb-4" id="hero-title">Version 24w31b Changelog</h1>
+              <h1 class="text-2xl font-bold text-gray-900 mb-4" id="hero-date">Date: 30-07-2024</h1>
+              <p class="text-gray-600" id="hero-description">This snapshot fixes some bugs from the previous that managed to sneak in, and adds a new tree</p>
+            </div>
+          </div>
+        </section>
+        
+    <section id="contents" class="bg-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <div class="md:col-span-6">
+                    <img class="rounded-lg shadow-lg" src="./banner.png" alt="Minecraft" id="about-image" height="480" width="720">
+                </div>
+                <div class="md:col-span-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4" id="about-title">Test the latest version <a href="./index.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8 inline-block">Test it!</a></h2>
+                    <br>
+                    
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Additions</h2>
+        <ul class="list-disc text-gray-600 pl-8">
+            <li>Birch Tree</li><li>FPS counter</li><li>TPS (ticks per second) counter</li><li>Infrastructure to allow for ticking and rendering to be seperated in the future to improve performance</li>
+        </ul>
+        <br>
+        
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Changes</h2>
+        <ul class="list-disc text-gray-600 pl-8">
+            <li>Frozen Peaks, Snowy Slopes, Snowy Taiga, Snowy Beach, Snowy Plains, Ice Spikes generate top snow as part of decoration, rather than biome surface</li><li>Added white border around loading screen's bar</li><li>Overlapping dense leaves will now become dense, rather than loggy</li><li>Oak, Spruce , and Birch Spruce trees automatically generate</li><li>Cleaned up old code</li><li>Player can no longer jump to leave crawl mode if there is no space</li><li>If player changes to invalid gamemode and restarts game, gamemode defaults to creative to prevent [MCSE-34]</li>
+        </ul>
+        <br>
+        
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Bugs Fixed</h2>
+        <ul class="list-disc text-gray-600 pl-8">
+            <li>[MCSE-31] Performance on mobile is bad</li><li>[MCSE-35] snow biomes have plants on top of snow, not replacing it</li><li>[MCSE-34] create world screen has "cancel" instead of survival-creative toggle</li><li>[MCSE-36] jumping makes steve turn the other way</li><li>[MCSE-38] Parts of debug screen (i) missing</li><li>[MCSE-39] snow is considered a surface block, not a decoration, leading to plants on top of top-snow</li><li>[MCSE-40] Pressing up-arrow while underwater makes player be standing up, rather than continue swimming</li>
+        </ul>
+        <br>
+        
+                </div>
+            </div>
+        </div>
+    </section>
+    
+      </main>
+      <div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 right-0 bg-gradient-to-r from-gray-900 to-gray-700 z-50">
+        <nav class="px-2 pt-2 pb-4 space-y-1">
+              <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
+            <a href="/projects/scratch/minecraft/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Scratch</a>
+            <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+            <a href="/IS/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">IS</a>
+         
+         
+        </nav>
+      </div>
+      <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+          var mobileMenu = document.getElementById('mobile-menu');
+          mobileMenu.classList.toggle('hidden');
+        });
+      </script>
+    </body>
+    </html>
+    

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real World Time and Date</title>
+<style>
+  body {
+    font-family: Arial, sans-serif; 
+    text-align: center;
+    margin-top: 50px;
+  }
+  .datetime {
+    font-size: 2em;
+  }
+</style>
+</head>
+<body onload="updateDateTime()">
+<div class="datetime" id="datetime"></div>
+
+<script>
+  function updateDateTime() {
+    var datetimeElement = document.getElementById('datetime');
+    var now = new Date();
+    var date = now.toDateString();
+    var time = now.toLocaleTimeString();
+
+    datetimeElement.textContent = date + ' ' + time;
+  }
+
+  setInterval(updateDateTime, 1000); // Update every second
+</script>
+</body>
+</html>

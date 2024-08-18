@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Time</title>
+<style>
+  body {
+    font-family: Arial, sans-serif; 
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .datetime {
+    font-size: 2em;
+  }
+  form {
+    margin-top: auto;
+  }
+</style>
+</head>
+<body onload="updateDateTime()">
+<div class="content">
+  <div class="datetime" id="date"></div>
+  <div class="datetime" id="time"></div>
+  <br>
+  <h1>Centre Number: </h1>  <h1><div id="updateLine"></div></h1>
+</div>
+<br>
+<form id="updateForm">
+  <label for="updateText">Centre Number</label>
+  <input type="text" id="updateText" name="updateText">
+  
+  <button type="submit">Update</button>
+</form>
+
+<script>
+  function updateDateTime() {
+    var dateElement = document.getElementById('date');
+    var timeElement = document.getElementById('time');
+    var now = new Date();
+    var date = now.toDateString();
+    var time = now.toLocaleTimeString();
+
+    dateElement.textContent = date;
+    timeElement.textContent = time;
+  }
+
+  setInterval(updateDateTime, 1000); // Update every second
+
+  var updateForm = document.getElementById('updateForm');
+  updateForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    var updateText = document.getElementById('updateText').value;
+    var updateLine = document.getElementById('updateLine');
+    updateLine.textContent = updateText;
+  });
+ 
+// Define an async function to wrap your code
+async function requestWakeLock() {
+  if ('wakeLock' in navigator) {
+    let lock;
+    const type = 'screen'; // Define the type as 'screen'
+
+    try {
+      console.log(`Acquire "${type}" button pressed.`);
+      lock = await navigator.wakeLock.request(type);
+      console.log(`"${type}" lock acquired.`);
+
+      lock.addEventListener('release', () => {
+        console.log(`"${type}" lock released.`);
+        lock = null;
+      });
+    } catch (e) {
+      console.error(`Caught ${e.name} acquiring "${type}" lock: ${e.message}`);
+    }
+  }
+}
+
+// Call the async function to execute your code
+requestWakeLock();
+
+
+  
+
+
+
+
+</script>
+</body>
+</html>

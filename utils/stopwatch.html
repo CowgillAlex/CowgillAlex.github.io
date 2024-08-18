@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stopwatch</title>
+<style>
+  body {
+    font-family: Arial, sans-serif; /* Change the font family here */
+  }
+  .stopwatch {
+    font-size: 2em;
+    text-align: center;
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body onload="startStopwatch()">
+<div class="stopwatch" id="stopwatch">00:00:00</div>
+
+<script>
+  function startStopwatch() {
+    var startTime = Date.now();
+    var stopwatchElement = document.getElementById('stopwatch');
+
+    function updateStopwatch() {
+      var elapsedTime = Date.now() - startTime;
+      var hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+      var minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+
+      hours = (hours < 10) ? '0' + hours : hours;
+      minutes = (minutes < 10) ? '0' + minutes : minutes;
+      seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+      stopwatchElement.textContent = hours + ':' + minutes + ':' + seconds;
+    }
+
+    setInterval(updateStopwatch, 1000);
+  }
+</script>
+</body>
+</html>
