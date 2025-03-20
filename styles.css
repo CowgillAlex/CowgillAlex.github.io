@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+/* Define CSS variables */
+:root {
+    --primary-color: #2E7D32;  /* Header & Footer */
+    --secondary-color: #256D27;  /* Nav bar & headings */
+    --hover-color: #1B5E20;  /* Hover effects */
+    --aside-bg: #A5D6A7;  /* Sidebar background */
+    --aside-border: #5A9E6F;  /* Sidebar border */
+    --text-color: #333;  /* Main text */
+    --article-text: #555;  /* Article text */
+    --background-color: #eef6ff;  /* Page background */
+    --content-bg: #fff;  /* Main content background */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 10px;
+    text-align: center;
+}
+
+header h1 {
+    color: #fff;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--secondary-color);
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: var(--hover-color);
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    flex-wrap: wrap; /* Ensure wrapping for smaller screens */
+    min-height: 70vh;
+}
+
+aside {
+    width: 250px;
+    background-color: var(--aside-bg);
+    padding: 15px;
+    border-right: 2px solid var(--aside-border);
+    flex-shrink: 0; /* Prevent shrinking on small screens */
+}
+
+aside h2 {
+    color: var(--secondary-color);
+    font-size: 18px;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 10px 0;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: var(--hover-color);
+    display: block;
+}
+
+aside ul li a:hover {
+    color: var(--secondary-color);
+}
+
+main {
+    flex: 1;
+    background-color: var(--content-bg);
+    padding: 20px;
+    margin-left: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+article h2,
+article h3,
+article h4 {
+    color: var(--secondary-color);
+}
+
+article p {
+    color: var(--article-text);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Make the container stack vertically */
+    .container {
+        flex-direction: column;
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+        width: 92%;
+    }
+
+    aside {
+        width: 100%;
+        border-right: none;
+    }
+
+    main {
+        margin-left: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 0px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Adjust text and padding for very small screens */
+    header h1 {
+        font-size: 18px;
+    }
+
+    aside h2 {
+        font-size: 16px;
+    }
+
+    article h2 {
+        font-size: 20px;
+    }
+
+    article h3 {
+        font-size: 18px;
+    }
+
+    article p {
+        font-size: 14px;
+    }
+}

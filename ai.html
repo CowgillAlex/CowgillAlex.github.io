@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ollama Chat Interface</title>
+  <style>
+    /* Basic CSS styling for a ChatGPT/WhatsApp-like interface */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .chat-container {
+      background-color: #fff;
+      width: 400px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      background-color: #0084ff;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.2em;
+    }
+    .chat-body {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #e5ddd5;
+    }
+    .message {
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+    .message.user {
+      align-items: flex-end;
+    }
+    .message.bot {
+      align-items: flex-start;
+    }
+    .message-content {
+      max-width: 70%;
+      padding: 10px 15px;
+      border-radius: 20px;
+      word-wrap: break-word;
+    }
+    .message.user .message-content {
+      background-color: #0084ff;
+      color: #fff;
+      border-bottom-right-radius: 0;
+    }
+    .message.bot .message-content {
+      background-color: #fff;
+      color: #333;
+      border-bottom-left-radius: 0;
+      border: 1px solid #ddd;
+    }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+    .chat-input input {
+      flex: 1;
+      border: none;
+      padding: 15px;
+      font-size: 1em;
+      outline: none;
+    }
+    .chat-input button {
+      border: none;
+      background-color: #0084ff;
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .chat-input button:hover {
+      background-color: #006bbd;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Ollama Chat</div>
+    <div class="chat-body" id="chatBody">
+      <!-- Messages will be appended here -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const apiUrl = 'http://localhost:11434/api/generate'; // Adjust if necessary
+    const model = 'llama3.2'; // Use your desired model (e.g., deepseek-r1:1.5b)
+    const chatBody = document.getElementById('chatBody');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // Append a message to the chat body
+    function appendMessage(sender, text) {
+      const messageElem = document.createElement('div');
+      messageElem.classList.add('message', sender);
+
+      const contentElem = document.createElement('div');
+      contentElem.classList.add('message-content');
+      contentElem.textContent = text;
+
+      messageElem.appendChild(contentElem);
+      chatBody.appendChild(messageElem);
+      chatBody.scrollTop = chatBody.scrollHeight;
+      return contentElem; // Return the element for updates
+    }
+
+    // Handle sending message and streaming response
+    async function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      // Append the user's message
+      appendMessage('user', text);
+      userInput.value = '';
+      userInput.disabled = true;
+      sendBtn.disabled = true;
+
+      // Create a placeholder for the bot's message
+      const botMessageElem = appendMessage('bot', '');
+
+      try {
+        // Prepare the payload with streaming enabled
+        const payload = {
+          model: model,
+          prompt: text,
+          stream: true
+        };
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.body) {
+          throw new Error('ReadableStream not yet supported in this browser.');
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        // Read from the stream until it is done
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          // Decode the received chunk and append to buffer
+          buffer += decoder.decode(value, { stream: true });
+          // Assume the stream sends newline-delimited JSON objects
+          let lines = buffer.split('\n');
+          buffer = lines.pop(); // Last incomplete line
+
+          for (const line of lines) {
+            if (line.trim()) {
+              try {
+                const json = JSON.parse(line);
+                // Append the token response to the bot's message
+                // Avoid overwriting previous tokens; simply concatenate the new token
+                if (json.response) {
+                  botMessageElem.textContent += json.response;
+                  // Scroll to bottom to keep the latest token in view
+                  chatBody.scrollTop = chatBody.scrollHeight;
+                }
+                // Optionally, you can inspect json.done or other data for further control
+              } catch (err) {
+                console.error('Error parsing JSON from stream:', err);
+              }
+            }
+          }
+        }
+
+        // Handle any remaining buffer (if any)
+        if (buffer.trim()) {
+          try {
+            const json = JSON.parse(buffer);
+            if (json.response) {
+              botMessageElem.textContent += json.response;
+            }
+          } catch (err) {
+            console.error('Error parsing final JSON from stream:', err);
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        botMessageElem.textContent = 'An error occurred. Please try again.';
+      } finally {
+        userInput.disabled = false;
+        sendBtn.disabled = false;
+        userInput.focus();
+      }
+    }
+
+    // Event listeners for button click and enter key
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -4,34 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="base.css">
     <title>Home | Alexander Cowgill</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+
+
+    </style>
 </head>
 
 <body>
-    <div id="navbar">
-        <h1>Alex</h1>
-        <div id="links">
-            <a href="#">Home</a>
-            <a href="#">Scratch</a>
-            <a href="#">Contact</a>
-            <a href="#">IS</a>
-        </div>
+    <header >
+        <h1>H:/Home</h1>
+        <nav id="nav-head">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="/projects/scratch/minecraft/">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">YouTube</a></li>
+                <li><a href="#">A Level</a></li>
+                <li><a href="#">Posts</a></li>
+                <li><a href="/IS/">IS</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside>
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="#overview">Introduction</a></li>
+                <li><a href="#purpose">Context</a></li>
+             
+            </ul>
+        </aside>
+
+        <main>
+            <article>
+                <h2 id="overview">Hi, I'm Alex</h2>
+                
+                <p>I am an A-Level student studying Computing, English and Politics. In my free time I do a lot of programming and video making/editing</p>
+                <h3 id="purpose">What is on this website then?</h3>
+                <p>This website is a compilation of my works, web based projects, and other misc thoughts I have </p>
+                
+            </article>
+        </main>
     </div>
-    <main>
-        <div class="container" id="about-me">
-            <h2>About Me</h2>
-            <p>I am an A Level Computer Science student, programmer, video-gamer and YouTuber. I try to create fun, engaging tutorials, videos, shorts and streams</p>
-        </div>
-        <div class="container" id="contact">
-            <h2>Contact Me</h2>
-            <div class="contact-container">
-                <h3>Github</h3>
-                <img src="https://dummyimage.com/480x360/000/fff">
-                <p>Find me <a href="#">Here</a> on GitHub</p>
-            </div>
-        </div>
-    </main>
+
+    <footer id="footer-foot">
+        &copy; 2025 Alexander Cowgill
+    </footer>
+    <script src="/navigation.js"></script>
 </body>
 
 </html>
