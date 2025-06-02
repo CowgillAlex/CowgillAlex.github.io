@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to make Minecraft Terrain | Alexander Cowgill</title>
+
+  <!-- Google tag (gtag.js) 
+-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-37H5NBDGQ7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-37H5NBDGQ7');
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>P:/Projects/Paper MC</h1>
+    <nav id="nav-head">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects/scratch/minecraft/">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="https://www.youtube.com/@AlexC_MC">YouTube</a></li>
+        <li><a href="https://edu.alexco.dev/">A Level</a></li>
+        <li><a href="#">Posts</a></li>
+        <li><a href="/IS/">IS</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside>
+      <h2>Navigation</h2>
+      <ul>
+
+
+      </ul>
+    </aside>
+
+    <main>
+      <article>
+        <h1>How to make Minecraft Terrain</h1>
+        <p>Before reading this article, I would advise that you take a look at the following resources, they will really
+          help your understanding of the concepts illustrated here:</p>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=ob3VwY4JyzE">Reinventing Minecraft World Generation by Henrik
+              Kniberg - YouTube</a></li>
+          <li><a href="https://www.alanzucconi.com/2022/06/05/minecraft-world-generation/">The World Generation of
+              Minecraft - Alan Zucconi</a>, and it&#39;s video <a href="https://www.youtube.com/watch?v=YyVAaJqYAfE">How
+              Minecraft Actually Works - YouTube</a></li>
+          <li><a href="https://minecraft.wiki/w/Density_function">Density Function - Minecraft Wiki</a></li>
+          <li><a href="https://minecraft.wiki/w/World_generation">World Generation - Minecraft Wiki</a></li>
+          <li><a href="https://github.com/misode/deepslate">Deepslate - Misode - Github</a>
+          </li>
+        </ul>
+        <p>
+
+          If you haven&#39;t ever looked into Minecraft&#39;s source files before, some concepts illustrated below may
+          seem a little unfamiliar.
+        </p>
+        <h2>Introduction</h2>
+        <p>In my own projects, I have worked with Minecraft-style terrain. Simple maths joined together seems to be able
+          to create unique, unpredictable, yet controlled worlds. Many Minecraft clones attempt to recreate this effect,
+          but fall short due to one small detail: 3D noise. </p>
+        <p>Of course, in a 2d world, this may not make sense. Why should I use 3D noise when I am moving in only two
+          dimensions? For a 3D world, you should use 3d noise, for a 2d world, such as the one we will build today, you
+          should use 2D noise. </p>
+        <p>But what is noise? In short, noise is controlled chaos. Noise is a mathematical function where you allocate
+          positions in a &quot;grid&quot; to have values, and then interpolate them, blend them together, so there are
+          no truly jagged edges, and you get smooth lines. </p>
+        <p>Here is an image of &quot;White Noise&quot; - each pixel has no concept of it&#39;s neighbours, it is
+          randomly &quot;on&quot; or &quot;off&quot;, just like an old TV:
+          ![[Pasted image 20250527203203.png]]
+          Now in Minecraft, this would not look like very pleasing terrain, no matter the direction in which you sample
+          it. </p>
+        <p>If this 256x256 grid of pixels was your world, it would be very difficult to traverse. So how about we go
+          ahead and <em>smooth</em> the pixels out, ensuring that there are no sudden jumps:
+          ![[Pasted image 20250527203420.png]]
+          Suddenly, our terrain would look much nicer - there are no sudden changes in height, the transition from white
+          to black is much harder to track, now rather than just a fixed on and off, its a gradient. </p>
+        <p>However, we still have an issue. We have no real way to predict the next pixel. Yes, we have interpolated the
+          heights, but it is too unpredictable, we have no input on this system. </p>
+        <p>This is where our &quot;Proper&quot; noise comes in. There are two common types of it: Simplex, and Perlin.
+        </p>
+        <p>Simplex noise looks a bit like this:
+          ![[simplex.png]]
+          Perlin noise looks like this:
+          ![[perlin.png]]</p>
+        <p>To make the terrain look a little more &quot;exciting&quot;, we can add octaves, also known as roughness:
+          ![[Pasted image 20250527204339.png]]
+          However, how should we actually sample the terrain from this? You could simply say the lighter the colour the
+          higher the terrain is, but this comes with a few caveats.
+          In this image, we can see that there is a mysterious lack of overhangs in the terrain, something that is very
+          unique to Minecraft:
+          <img src="https://minecraft.wiki/images/Noise_router_diagram_simple_noise.png" alt="Image">
+        </p>
+        <p>This is where most clones fall short - Minecraft does not derive it&#39;s heightmap <em>directly</em> from
+          the noise, it uses a more complex system. </p>
+        <h2>Density Functions</h2>
+        <p>Minecraft uses 3d noise, but for this article, we will call it 2d noise. </p>
+        <p>If we take our noise image from before, and say that any block with a brightness less than 128 (half) is
+          solid, and anything higher is air, this is our result:
+          ![[Pasted image 20250527205039.png]]
+          This does have a vague Minecrafty feel to it, but it still isn&#39;t traversable. </p>
+        <p>This is why Minecraft uses this noise, but with a <em>height bias</em> - the closer you are to bedrock, the
+          more &quot;solid&quot; the ground is. This means that at around sea level, the ground is pretty solid.
+          You can picture the height bias as a &quot;gradient&quot; such as this:
+          ![[Pasted image 20250527205252.png]]
+          When we blend them together, we get some remarkably plausible terrain, complete with some overhangs and the
+          odd floating island</p>
+        <p>![[Pasted image 20250527205425.png]]</p>
+        <p>Using Misode&#39;s Density Function viewer, we can see this ourselves using a single noise:
+          ![[Pasted image 20250527210208.png]]</p>
+        <p>However, Minecraft does not use a single noise for it&#39;s terrain: it actually uses 60! There are 3 that
+          influence terrain shape directly: Continentalness, Erosion, and Weirdness</p>
+        <p>Continentalness is the broad scale of terrain, whether the land should be mainly, well, land, or it should be
+          ocean. </p>
+        <p>Erosion is responsible for those overhangs, and weirdness is responsible, in terrain generation for
+          &quot;peaks and valleys&quot;, also known as ridges. </p>
+        <p>Minecraft does lots of math to these, and answers the overall question: should the block at x,y,z be solid,
+          or not. </p>
+        <p>However, we have missed a small detail. </p>
+        <h2>Splines</h2>
+        <p>Normal noise does not cause those sudden plateaus that we get in Minecraft. What gives? Minecraft uses maths
+          called &quot;Splines&quot;, which allow the noise to remain <em>continuous</em>, but suddenly jump to a
+          higher/lower value when it reaches a threshold.
+          This is what allows for those sudden jumps from ocean to land, such as here:
+          ![[Pasted image 20250527211018.png]]</p>
+        <p>Using a hard value, such as </p>
+        <pre><code class="language-js">if (noise &gt; 0.4){
+	noise = 0.8
+}
+</code></pre>
+        <p>would not look nice, having random towering cliffs would remove the immersion somewhat. </p>
+        <h2>Outroduction</h2>
+        <p>Hopefully this article has been a superficial glance at Minecraft&#39;s terrain generation.
+          If you do have any questions, leave a comment on my <a href="https://www.youtube.com/@AlexC_MC">YouTube</a>
+        </p>
+        <p>Thanks for reading
+          - Alex</p>
+      </article>
+    </main>
+  </div>
+
+  <footer id="footer-foot">
+    &copy; 2025 Alexander Cowgill
+  </footer>
+  <script src="/navigation.js"></script>
+</body>
+
+</html>
