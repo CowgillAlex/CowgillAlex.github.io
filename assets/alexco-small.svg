@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 151.24 120.64">
+  <!-- Generator: Adobe Illustrator 29.4.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 152)  -->
+  <defs>
+    <style>
+      .st0, .st1 {
+        isolation: isolate;
+      }
+
+      .st1 {
+        fill: #3a4f6b;
+        font-family: Arial-BoldMT, Arial;
+        font-size: 35.5px;
+        font-weight: 700;
+      }
+
+      .st2 {
+        fill: #9bd4cc;
+      }
+
+      .st3 {
+        fill: #395077;
+      }
+    </style>
+  </defs>
+  <path class="st3" d="M66,18.64L30,54.64c-3.31,3.31-3.31,8.69,0,12l36,36c3.31,3.31,3.31,8.69,0,12h0c-3.31,3.31-8.69,3.31-12,0L6,66.64c-3.31-3.31-3.31-8.69,0-12L54,6.64c3.31-3.31,8.69-3.31,12,0h0c3.31,3.31,3.31,8.69,0,12Z"/>
+  <path class="st2" d="M96.62,5.39l49.23,49.23c2.97,2.97,2.97,7.8,0,10.77l-49.23,49.23c-2.97,2.97-7.8,2.97-10.77,0l-1.23-1.23c-2.97-2.97-2.97-7.8,0-10.77l37.23-37.23c2.97-2.97,2.97-7.8,0-10.77h0c-5.63-5.63-27.09-27.09-37.23-37.23-2.97-2.97-2.97-7.79,0-10.77l1.23-1.23c2.97-2.97,7.8-2.97,10.77,0Z"/>
+  <g class="st0">
+    <text class="st1" transform="translate(38.21 70.97)"><tspan x="0" y="0">ACD</tspan></text>
+  </g>
+</svg>
