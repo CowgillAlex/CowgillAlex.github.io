@@ -49,7 +49,6 @@ for (const [path, destination] of Object.entries(redirects)) {
 
 // Keep Scratch's actual history at its original URLs, separate from the Java project.
 await cp('projects/scratch', 'build/projects/scratch', { recursive: true });
-await cp('assets', 'build/assets', { recursive: true });
-for (const file of ['styles.css', 'navigation.js', 'scripts.js', 'global.css', 'base.css']) {
+for (const file of ['styles.css', 'navigation.js']) {
 	await cp(file, 'build/' + file);
 }
