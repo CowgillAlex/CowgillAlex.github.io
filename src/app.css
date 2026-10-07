@@ -141,6 +141,11 @@ input[type='range'], input[type='checkbox'] { accent-color: var(--accent); }
 	.page-sidebar { display: block; position: sticky; top: 24px; max-height: calc(100dvh - 48px); overflow-y: auto; border-right: 1px solid var(--border); padding-right: 16px; font-size: 13px; }
 	.sidebar-title { padding: 0 12px 12px; font-size: 12px; color: var(--text-faint); }
 }
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+	html { overscroll-behavior-y: none; scroll-padding-top: 64px; }
+	.site > header { position: sticky; top: 0; z-index: 5; }
+	.page-sidebar { top: 88px; max-height: calc(100dvh - 112px); }
+}
 @media (max-width: 520px) {
 	.header-bar { padding: 8px 14px; gap: 8px; min-height: 54px; }
 	.nav { gap: 8px; font-size: 12px; }
