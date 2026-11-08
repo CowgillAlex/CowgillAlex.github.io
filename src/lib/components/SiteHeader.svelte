@@ -14,12 +14,15 @@
 		{ href: '/writing/', label: 'Writing' }, { href: '/tools/', label: 'Tools' }
 	];
 	let light = $state(false);
+	let confirmingLight = $state(false);
+	let lightConfirmed = false;
 	let dialog: HTMLDialogElement;
 	let opener = $state<HTMLButtonElement>();
 	let expanded = $state(false);
 	let selectedHeading: HTMLElement | null = null;
 	onMount(() => {
 		light = document.documentElement.dataset.theme === 'light';
+		try { lightConfirmed = localStorage.getItem('light-mode-confirmed') === 'true'; } catch {}
 		const wideScreen = matchMedia('(min-width: 1024px)');
 		const dismissOverlay = () => { if (wideScreen.matches) dialog.close(); };
 		wideScreen.addEventListener('change', dismissOverlay);
@@ -27,8 +30,18 @@
 	});
 	afterNavigate(() => {
 		dialog?.close();
+		confirmingLight = false;
 	});
 	function toggleTheme() {
+		if (!light && !lightConfirmed) {
+			if (!confirmingLight) {
+				confirmingLight = true;
+				return;
+			}
+			lightConfirmed = true;
+			try { localStorage.setItem('light-mode-confirmed', 'true'); } catch {}
+		}
+		confirmingLight = false;
 		light = !light;
 		document.documentElement.dataset.theme = light ? 'light' : 'dark';
 		try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch {}
@@ -68,7 +81,10 @@
 			{#if headings.length > 1}
 				<button class="icon-button outline-toggle" bind:this={opener} onclick={openOutline} aria-label="Open table of contents" title="Table of contents" aria-haspopup="dialog" aria-controls="page-outline" aria-expanded={expanded}><SidebarSimpleIcon size={18} aria-hidden="true" /></button>
 			{/if}
-			<button class="icon-button" onclick={toggleTheme} aria-label={light ? 'Switch to dark mode' : 'Switch to light mode'} title={light ? 'Switch to dark mode' : 'Switch to light mode'}>{#if light}<MoonIcon size={18} aria-hidden="true" />{:else}<SunIcon size={18} aria-hidden="true" />{/if}</button>
+			<span class="theme-control">
+				<span class="theme-confirmation" role="status">{#if confirmingLight}are you sure?{/if}</span>
+				<button class="icon-button" onclick={toggleTheme} aria-label={confirmingLight ? 'Confirm switch to light mode' : light ? 'Switch to dark mode' : 'Switch to light mode'} title={confirmingLight ? 'Confirm switch to light mode' : light ? 'Switch to dark mode' : 'Switch to light mode'}>{#if light}<MoonIcon size={18} aria-hidden="true" />{:else}<SunIcon size={18} aria-hidden="true" />{/if}</button>
+			</span>
 		</div>
 	</div>
 </header>
@@ -77,3 +93,9 @@
 	<div class="drawer-head"><span id="outline-title">On this page</span><button class="icon-button" onclick={() => dialog.close()} aria-label="Close table of contents"><XIcon size={18} aria-hidden="true" /></button></div>
 	<div class="drawer-body"><OutlineLinks {headings} bind:activeHash onselect={jumpToHeading} /></div>
 </dialog>
+
+<style>
+	.theme-control { display: inline-flex; align-items: center; gap: 8px; }
+	.theme-confirmation { color: var(--text-soft); font-size: 12px; white-space: nowrap; }
+	.theme-confirmation:empty { display: none; }
+</style>
